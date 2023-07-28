@@ -6,7 +6,7 @@ function Poker(props){
   
     return (
         <div style={{height:50}} className="container">
-            <img className={props.value.isSelected ? "selected" : "unselected"} src={props.value.img} ></img> 
+            <img className={props.value.isSelected ? "selected" : "unselected"} src={props.value.img} alt={props.value.value+"-"+props.value.type} ></img> 
         </div>
     )
 

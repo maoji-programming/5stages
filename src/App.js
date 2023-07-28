@@ -73,24 +73,22 @@ function App() {
   const [chanceOpen, setChanceOpen] = useState(false)
   const [openMsg, setOpenMsg] = useState({flag: false, content: "",style:"info"});
 
-  useEffect(
-    () =>{
-      if(stages.length == 0){
-        
-      }
-    } 
-  ,stages)
+  useEffect(() =>{
+    if(stages.length === 0){
+      alert("You win this game!!")
+    }
+  },[stages])
 
   function deleteCard(){
-    if(chance != 0){
-      if(stages[current].every((item) => item.isSelected == false)){
+    if(chance !== 0){
+      if(stages[current].every((item) => item.isSelected === false)){
         let i = Math.floor(Math.random() * (stages.length))
         deck.splice(Math.floor(Math.random() * (deck.length)), 0,  stages[i][0])
         stages[i].splice(0,1)
-        if(stages[i].length == 0){
+        if(stages[i].length === 0){
             
           stages.splice(i,1)
-          if(current == 1){
+          if(current === 1){
             const newCurrent = (current - 1) % stageNumber;
             setCurrent(newCurrent)
           }
@@ -114,17 +112,16 @@ function App() {
       // clear selected card 
       if( current >= 0 ){
         var newStages = [...stages]
-        //newStages = newStages.map( (stage, level) => level == current ?stage.map((cd) => cd.isSelected = false): stage)
-        for(var i = 0; i < newStages[current].length; i++){
+        //reset to unselected
+        for(let i = 0; i < newStages[current].length; i++){
           newStages[current][i].isSelected = false
         }
-        //console.log(newStages)
         setStages(newStages)
       }
       const newCurrent = (current + 1) % stageNumber;
       setCurrent(newCurrent)
       stages[newCurrent].push(deck.shift())
-      if(deck.length == 25 && !chanceOpen){
+      if(deck.length === 25 && !chanceOpen){
         setChance(5)
         setChanceOpen(true)
         setOpenMsg({flag: true, content: "Thanks God! you have 5 chance of deletion",style:"success"});
@@ -133,7 +130,7 @@ function App() {
       setResult(-1)
       setOpenMsg({flag: true, content: "Game Over", style:"error"});
     }
-    //console.log(deck)
+
   }
 
   function handleClose(event, reason){
@@ -146,7 +143,7 @@ function App() {
 
 
   function handleStatus(card, index, level){
-    const isClickable = current == level && (index < 2 || index > stages[current].length - 3) 
+    const isClickable = current === level && (index < 2 || index > stages[current].length - 3) 
     if(isClickable){
       var newStages = [...stages]
       newStages[current][index].isSelected = !newStages[current][index].isSelected
@@ -154,52 +151,35 @@ function App() {
       
       handleCard(card);
          
-        
-
-        
     }
     
   }
 
 
   function handleCard(card){
-    console.log(card)
+
     if(!card.isSelected){
-      SetPool(pool.filter( (target) => { return target.value != card.value && target.type != card.type} ))
+      SetPool(pool.filter( (target) => { return target.value !== card.value && target.type !== card.type && target.img !== card.img} ))
     }else{     
       var newPool = [...pool]
+      //put into pool
       newPool.splice(0,0,card)
       SetPool(newPool)
-      console.log(newPool)
 
-      if(newPool.length  == 3){
-        const ttl = newPool.reduce((accum, cur) => accum + cur .value,0)
-        if(ttl % 10 == 0){
-          console.log("Clear")
-          
-          
-          
+      if(newPool.length  === 3){
+        // calculate sum
+        const ttl = newPool.reduce((accum, cur) => accum + cur.value,0)
+        if(ttl % 10 === 0){
 
-          //remove cards in field
-          // var newStages = [...stages]
-          // var newStage = stages[current].filter((el) => !newPool.includes(el))
-          // newStages[current] = [...newStage]
-          // //newStages.map((st, idx) => st = idx == current? stages[current].filter((el) => newPool.includes(el)): st)
-          // //var newStage = stages[current].filter((el) => !newPool.includes(el))
-          // const temp = [...newStages]
-          // console.log(temp)
-          // setStages(temp);
-
-          var newStages = [...stages]; // Create a copy of each element in stages
-          //var newStage = stages[current].filter((el) => !newPool.includes(el));
-          //var newStages2= newStage.map((stage, index) =>{stage = index == current? newStage :stage});
-          for(var i = 0; i < newPool.length; i++){
-            const tptr = newStages[current].findIndex((item) => item == newPool[i])
+          let newStages = [...stages]; 
+          //remove stage's element based on the pool
+          for(let i = 0; i < newPool.length; i++){
+            const tptr = newStages[current].findIndex((item) => item === newPool[i])
             if(tptr > -1){
               newStages[current].splice(tptr,1)
             }
           }
-          if(newStages[current].length == 0){
+          if(newStages[current].length === 0){
             
             newStages.splice(current,1)
             const newCurrent = (current - 1) % stageNumber;
@@ -214,19 +194,17 @@ function App() {
             deck.splice(Math.floor(Math.random() * (deck.length)), 0,  newCard)
           })
           
-          if(newStages.length == 0){
-            setOpenMsg({flag: true, content: "You win this game!!",style:"success"});
-          }
+          
 
         }else{
-          var newStages = [...stages]
-          //newStages = newStages.map( (stage, level) => level == current ?stage.map((cd) => cd.isSelected = false): stage)
-          for(var i = 0; i < newStages[current].length; i++){
+          let newStages = [...stages]
+          // reset to unselected
+          for(let i = 0; i < newStages[current].length; i++){
             newStages[current][i].isSelected = false
           }
-          //console.log(newStages)
+
           setStages(newStages)
-          setOpenMsg({flag: true, content: "Sum is not equal to 10, 20 or 30",style:"warning"});
+          setOpenMsg({flag: true, content: "Sum is not equal to 10, 20 or 30", style:"warning"});
         }
         SetPool([])
       }
@@ -286,10 +264,10 @@ function App() {
   alignItems="flex-start"
  spacing={2}>
 
-          {//handleStatus(card,index, level)
+          {
             
             stages.map((stage, level) => {
-              {
+              
                 return(
                   <Grid item direction="column">
                     {
@@ -303,7 +281,7 @@ function App() {
                     }
                   </Grid>
                 )
-              }
+               
               
             })
           }
