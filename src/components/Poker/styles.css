@@ -1,0 +1,8 @@
+.selected{
+    
+    border: 5px solid #00ff00ff;
+}
+
+.unselected{
+    border: 5px solid #00000000;
+}
