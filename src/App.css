@@ -41,6 +41,12 @@
   margin: 10px 10px;
   padding: 10px 10px;
 }
+.btn-board{
+  margin: 10px 10px;
+  padding: 10px 10px;
+  position: fixed;
+  bottom: 0;
+}
 
 .danger{
   color: #f00

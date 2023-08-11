@@ -251,10 +251,7 @@ function App() {
             </Typography>
 
           </CardContent>
-          <CardActions>
-            <Button onClick={nextCard} size="large" color="primary" >next card</Button>
-            <Button onClick={deleteCard} size="large" color="secondary" >delete Card</Button>
-          </CardActions>
+          
         </Card>
 
         <Grid
@@ -285,6 +282,11 @@ function App() {
               
             })
           }
+        </Grid>
+        
+        <Grid className="btn-board" spacing={3} container>
+          <Grid item xs={6}><Button onClick={nextCard} fullWidth variant="contained" color="primary" >next card</Button></Grid>
+          <Grid item xs={6}><Button onClick={deleteCard} fullWidth variant="contained" color="secondary" >delete Card</Button></Grid>
         </Grid>
         
 
