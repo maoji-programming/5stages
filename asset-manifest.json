@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/5stages/static/css/main.71b83bcd.css",
-    "main.js": "/5stages/static/js/main.1ebd60b7.js",
+    "main.css": "/5stages/static/css/main.7e896c1e.css",
+    "main.js": "/5stages/static/js/main.91df11a7.js",
     "static/js/787.a1a02880.chunk.js": "/5stages/static/js/787.a1a02880.chunk.js",
     "static/media/king_of_clubs.svg": "/5stages/static/media/king_of_clubs.ab254a77c1c59ede9299.svg",
     "static/media/queen_of_clubs.svg": "/5stages/static/media/queen_of_clubs.b68541fd77d3d5083c87.svg",
@@ -56,12 +56,12 @@
     "static/media/3_of_spades.svg": "/5stages/static/media/3_of_spades.be7280c2a4b069709e21.svg",
     "static/media/2_of_spades.svg": "/5stages/static/media/2_of_spades.b7f57979e671f568dd01.svg",
     "index.html": "/5stages/index.html",
-    "main.71b83bcd.css.map": "/5stages/static/css/main.71b83bcd.css.map",
-    "main.1ebd60b7.js.map": "/5stages/static/js/main.1ebd60b7.js.map",
+    "main.7e896c1e.css.map": "/5stages/static/css/main.7e896c1e.css.map",
+    "main.91df11a7.js.map": "/5stages/static/js/main.91df11a7.js.map",
     "787.a1a02880.chunk.js.map": "/5stages/static/js/787.a1a02880.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.71b83bcd.css",
-    "static/js/main.1ebd60b7.js"
+    "static/css/main.7e896c1e.css",
+    "static/js/main.91df11a7.js"
   ]
 }
